@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E5B346692CF4C28400E1801F /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E5B346682CF4C28400E1801F /* FirebaseAuth */; };
+		E5B3466B2CF4C28400E1801F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E5B3466A2CF4C28400E1801F /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		E501CF302CEF7EF700A82D76 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5B346692CF4C28400E1801F /* FirebaseAuth in Frameworks */,
+				E5B3466B2CF4C28400E1801F /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = FocusTimerApp;
 			packageProductDependencies = (
+				E5B346682CF4C28400E1801F /* FirebaseAuth */,
+				E5B3466A2CF4C28400E1801F /* FirebaseFirestore */,
 			);
 			productName = FocusTimerApp;
 			productReference = E501CF1F2CEF7EF400A82D76 /* FocusTimerApp.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = E501CF162CEF7EF400A82D76;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				E5B346672CF4C28400E1801F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E501CF202CEF7EF400A82D76 /* Products */;
 			projectDirPath = "";
@@ -552,6 +564,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E5B346672CF4C28400E1801F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E5B346682CF4C28400E1801F /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B346672CF4C28400E1801F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		E5B3466A2CF4C28400E1801F /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E5B346672CF4C28400E1801F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E501CF172CEF7EF400A82D76 /* Project object */;
 }
