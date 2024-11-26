@@ -5,6 +5,7 @@
 //  Created by Elias Puolitaival on 2024-11-21.
 //
 
+
 import SwiftUI
 import Firebase
 import FirebaseAuth
@@ -16,7 +17,7 @@ struct ContentView: View {
     
     var body: some View {
         if userIsLoggedIn {
-            TimerView()
+            TimerSelectionView()
         } else {
             content
         }
@@ -31,6 +32,7 @@ struct ContentView: View {
                 .frame(width: 1000, height: 400)
                 .rotationEffect(.degrees(136))
                 .offset(y: -350)
+                .blur(radius: 70)
             
             VStack(spacing: 20) {
                 Text("Welcome")
@@ -120,10 +122,10 @@ struct ContentView: View {
     }
 }
 
-
 #Preview {
     ContentView()
 }
+
 extension View {
     func placeholder<Content: View>(
         when shouldShow: Bool,
@@ -136,3 +138,4 @@ extension View {
             }
         }
 }
+
