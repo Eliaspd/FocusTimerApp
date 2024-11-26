@@ -6,12 +6,23 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct ContentView: View {
     @State private var email = ""
     @State private var password = ""
+    @State private var userIsLoggedIn: Bool = false
     
     var body: some View {
+        if userIsLoggedIn {
+            TimerView()
+        } else {
+            content
+        }
+    }
+    
+    var content: some View {
         ZStack {
             Color.black
             
@@ -53,7 +64,7 @@ struct ContentView: View {
                     .foregroundColor(.white)
                 
                 Button {
-                    //Sign Up
+                    register()
                 } label: {
                     Text("Sign up")
                         .bold()
@@ -68,23 +79,46 @@ struct ContentView: View {
                 .offset(y: 100)
                 
                 Button {
-                    //Login
+                    login()
                 } label: {
                     Text("Already have an account? Login")
                         .bold()
                         .foregroundColor(.white)
-                
+                    
                 }
                 .padding(.top)
                 .offset(y: 110)
-
-
+                
+                
             }
             .frame(width: 350)
+            .onAppear {
+                Auth.auth().addStateDidChangeListener { auth, user in
+                    if user != nil {
+                        userIsLoggedIn.toggle()
+                    }
+                }
+            }
         }
         .ignoresSafeArea()
+    }
+    
+    func login() {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
         }
     }
+    
+    func register() {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+    }
+}
 
 
 #Preview {
@@ -95,10 +129,10 @@ extension View {
         when shouldShow: Bool,
         alignment: Alignment = .leading,
         @ViewBuilder placeholder: () -> Content) -> some View {
-
-        ZStack(alignment: alignment) {
-            placeholder().opacity(shouldShow ? 1 : 0)
-            self
+            
+            ZStack(alignment: alignment) {
+                placeholder().opacity(shouldShow ? 1 : 0)
+                self
+            }
         }
-    }
 }
