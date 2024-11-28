@@ -13,7 +13,7 @@ struct CountdownView: View {
     @State private var timeRemaining: Int
     @State private var timer: Timer?
     
-    @Environment(\.presentationMode) var presentationMode 
+    @Environment(\.presentationMode) var presentationMode
     
     init(minutes: Int) {
         self.minutes = minutes
