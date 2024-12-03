@@ -1,5 +1,5 @@
 # Focus Timer App
-A simple timer app to help you focus and stay productive. Built with SwiftUI and Firebase.
+A simple timer app as a school project, to help you focus and stay productive. Built with SwiftUI and Firebase.
 
 ## Features
 - **Sign Up / Log In**: Use your email to create an account and log in.
