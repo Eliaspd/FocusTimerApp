@@ -16,7 +16,6 @@ A simple timer app as a school project, to help you focus and stay productive. B
 1. **Clone the repo**:  
    ```bash
    git clone https://github.com/Eliaspd/FocusTimerApp.git
-   cd FocusTimerApp
 
 2. Install Firebase:
 
