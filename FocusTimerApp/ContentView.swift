@@ -14,10 +14,12 @@ struct ContentView: View {
     @State private var email = ""
     @State private var password = ""
     @State private var userIsLoggedIn: Bool = false
+    @State private var authListenerHandle: AuthStateDidChangeListenerHandle?
     
     var body: some View {
         if userIsLoggedIn {
-            TimerSelectionView()
+           
+            TimerSelectionView(userIsLoggedIn: $userIsLoggedIn)
         } else {
             content
         }
@@ -86,19 +88,21 @@ struct ContentView: View {
                     Text("Already have an account? Login")
                         .bold()
                         .foregroundColor(.white)
-                    
                 }
                 .padding(.top)
                 .offset(y: 110)
-                
-                
             }
             .frame(width: 350)
             .onAppear {
-                Auth.auth().addStateDidChangeListener { auth, user in
+                authListenerHandle = Auth.auth().addStateDidChangeListener { auth, user in
                     if user != nil {
                         userIsLoggedIn.toggle()
                     }
+                }
+            }
+            .onDisappear {
+                if let handle = authListenerHandle {
+                    Auth.auth().removeStateDidChangeListener(handle)
                 }
             }
         }
@@ -138,4 +142,3 @@ extension View {
             }
         }
 }
-

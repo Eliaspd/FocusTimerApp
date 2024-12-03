@@ -84,6 +84,7 @@ struct CountdownView: View {
     }
     
     func startTimer() {
+        
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             if timeRemaining > 0 {
                 timeRemaining -= 1

@@ -7,15 +7,18 @@
 
 
 import SwiftUI
+import Firebase
+import FirebaseAuth
 
 struct TimerSelectionView: View {
+    
+    @Binding var userIsLoggedIn: Bool
+    
     var body: some View {
         NavigationStack {
             ZStack {
-                
                 Color.black
-                
-                
+                Spacer()
                 RoundedRectangle(cornerRadius: 30, style: .continuous)
                     .foregroundStyle(
                         .linearGradient(
@@ -30,7 +33,7 @@ struct TimerSelectionView: View {
                     .blur(radius: 70)
                 
                 VStack(spacing: 20) {
-                    
+                    Spacer()
                     Text("Let's focus! How long?")
                         .foregroundColor(.white)
                         .font(.system(size: 30, weight: .bold, design: .rounded))
@@ -54,6 +57,23 @@ struct TimerSelectionView: View {
                         }
                         .padding(.top, 10)
                     }
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        userIsLoggedIn = false
+                        try? Auth.auth().signOut()
+                    }) {
+                        Text("Log Out")
+                            .bold()
+                            .frame(width: 250, height: 50)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                                    .fill(.red)
+                            )
+                            .foregroundColor(.white)
+                    }
+                    .padding(.bottom, 30)
                 }
                 .padding()
             }
@@ -62,6 +82,7 @@ struct TimerSelectionView: View {
     }
 }
 
+
 #Preview {
-    TimerSelectionView()
+    TimerSelectionView(userIsLoggedIn: .constant(true))
 }
